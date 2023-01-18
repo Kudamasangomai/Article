@@ -9,13 +9,7 @@
                 </div>
                   <div class="p-6 bg-white border-b mr-1   border-red-700 lg:w-1/2">
                     @if(session('success'))
-    <div class="bg-green-500 rounded-sm p-2 w-full text-white"
-    x-data="{show:true}"
-    x-init="setTimeout(()=> show=false,3000)"
-    x-show="show"
-    >
-        {{session('success')}}
-    </div>
+  @include('layouts.messages')
 @endif
                     @foreach($articles as $article)
               

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\category;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 
 class CategoriesController extends Controller
 {
@@ -62,7 +63,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = category::find($id);
+        return view('categories.categoryedit',compact('category'));
     }
 
     /**
@@ -72,9 +74,11 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCategoryRequest $request,category $category)
     {
-        //
+        $category->update($request->validated());
+        return redirect()->route('categories.index')->with('success','Category Updated');;
+    
     }
 
     /**
