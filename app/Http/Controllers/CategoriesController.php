@@ -89,6 +89,12 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = category::find($id);
+        if($category->article()->count()){
+            return back()->with('error', 'Cannot delete, category has  A posts, delete The Post.');
+        }
+
+        $category->delete();
+        return redirect()->route('categories.index')->with('success','Category Deleted');
     }
 }
