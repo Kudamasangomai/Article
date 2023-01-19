@@ -17,7 +17,12 @@
                     <div class="bg-gray-100 md:flex md:flex-row mb-2 border-b mr-1">
                         
                         <div class="p-2">
-                            <img src="https://mdbootstrap.com/img/new/slides/041.jpg" class="max-w-full h-auto  mt-1" alt="..." />
+                          @if ($article->image)
+                          <img src="/storage/uploads/{{$article->image}}" class="max-w-full h-auto  mt-1" alt="..." />
+
+                          @else
+
+                          @endif                           
                             <p class=" text-2xl font-bold mt-2 ">
                                 <a href="{{ route('article_object', $article) }}">{{ $article->title }} </a>
                                 <sup class="font-semibold text-gray-500 mb-0">{{ $article->category->name }}</sup>  

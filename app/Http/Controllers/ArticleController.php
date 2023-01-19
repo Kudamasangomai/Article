@@ -48,13 +48,14 @@ class ArticleController extends Controller
        $form = $request->validate([
             'title' => 'required|max:30|min:3',
             'article' => 'required',
-            'cover_image'=>'image|nullable|max:1999',
+            'image'=>'image|nullable|max:1999',
             // 'category' => 'required',
             // 'category_id'=>'required'
         ]);
         $form['user_id'] = auth()->user()->id;
         $form['image'] = $filename ?? null;
         $form['category_id']= $request->category;
+      
         Article::create($form);
         return redirect('/articles')->with('success','Post Created');
     }

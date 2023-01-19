@@ -19,8 +19,10 @@
                   @error('categoryname')
                   <p class="bg-red-400 mb-1 rounded-sm p-2 text-white"> {{ $message }}</p>
                   @enderror
-                    <form method="POST" action="{{ route('articles.store') }}" x-show="!open">
+                    <form method="POST" action="{{ route('articles.store') }}" enctype="multipart/form-data" x-show="!open">
                         @csrf
+                        <p class=" text-3xl font-bold">Image </p>
+                        <input type="file" class=" rounded-md text-black p-1 w-full mb-4 bg-gray-100" required name="image">
                  <p class=" text-3xl font-bold">Artile Title </p>
                 @error('title')
                    <p class="bg-red-400 mb-1 rounded-sm p-2 text-white"> {{ $message }}</p>
