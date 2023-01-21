@@ -15,11 +15,15 @@ use App\Models\Article;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/', function () {
+
+//     $articles = Article::with('category')->take(5)->latest()->get();
+//     return view('welcome',compact('articles'));
+// });
 
 Route::get('/', function () {
 
-    $articles = Article::with('category')->take(5)->latest()->get();
-    return view('welcome',compact('articles'));
+    return view('auth.login');
 });
 
 Route::get('/dashboard', function () {
