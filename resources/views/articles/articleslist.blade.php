@@ -27,7 +27,7 @@
                                 <a href="{{ route('article_object', $article) }}">{{ $article->title }} </a>
                                 <sup class="font-semibold text-gray-500 mb-0">{{ $article->category->name }}</sup>  
                             </p>
-                            <p class=" text-m font-thin mt-1 ">{{ $article->created_at }}
+                            <p class=" text-m font-thin mt-1 ">{{ $article->created_at->format('d.M.Y - H:i') }}
                             <sub class="text-sm font-thin">{{ $article->created_at->diffForHumans() }}</sub></p>
                           
                           <p class="text-gray-500 font-light my-4">

@@ -22,7 +22,7 @@
                     <form method="POST" action="{{ route('articles.store') }}" enctype="multipart/form-data" x-show="!open">
                         @csrf
                         <p class=" text-3xl font-bold">Image </p>
-                        <input type="file" class=" rounded-md text-black p-1 w-full mb-4 bg-gray-100" required name="image">
+                        <input type="file" class=" rounded-md text-black p-1 w-full mb-4 bg-gray-100" name="image">
                  <p class=" text-3xl font-bold">Artile Title </p>
                 @error('title')
                    <p class="bg-red-400 mb-1 rounded-sm p-2 text-white"> {{ $message }}</p>
@@ -99,4 +99,14 @@
           
         </div>
     </div>
+    @push('scripts')
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+    @endpush('scripts')
 </x-app-layout>

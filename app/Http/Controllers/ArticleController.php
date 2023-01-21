@@ -48,7 +48,7 @@ class ArticleController extends Controller
         }
       
        $request->validate([
-            'title' => 'required|max:30|min:3',
+            'title' => 'required|max:70|min:3',
             'article' => 'required',
             'image'=>'image|nullable|max:1999',
         ]);
