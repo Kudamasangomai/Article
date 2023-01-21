@@ -36,7 +36,7 @@
                             <sub class="text-sm font-thin">{{ $article->created_at->diffForHumans() }}</sub></p>
                           
                           <p class="text-gray-500 font-light my-4">
-                           {{ Str::words($article->article,30)}}<sub>Read more</sub>
+                           {!! Str::words($article->article,30) !!}<sub>Read more</sub>
                           </p>
                           <p class="font-semibold text-xl mb-2 text-gray-800">{{ $article->user->name }}</p>
                           <div class="flex justify-start">
