@@ -32,10 +32,11 @@
                  @error('article')
                  <p class="bg-red-400 mb-1 rounded-sm p-2 text-white"> {{ $message }}</p>
              @enderror
-                 <textarea class="rounded-md text-black  h-20 w-full mb-2 bg-gray-100" name="article">
+                 <textarea class="rounded-md text-black  h-20 w-full mb-2 bg-gray-100" id="editor" name="article">
                     {{ old('article') }}
                 </textarea>
 
+                <p class=" text-md font-bold">Category </p>
                 @error('category_id')
                 <p class="bg-red-400 mb-1 rounded-sm p-2 text-white"> {{ $message }}</p>
             @enderror
@@ -46,6 +47,14 @@
                                 @if ($category->id == old('category')) selected @endif>{{ $category->categoryname }}</option>
                     @endforeach
                 </select>
+                <span class="text-gray-700 text-md">Tag</span>
+                <select name="tags[]" class="block w-full my-2" multiple>
+                @foreach ($tags as $tag )
+                <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                @endforeach
+            </select>
+
+              
 
                  <button class="rounded-md py-1 px-4 bg-green-500 border-b border-black">Post</button>
                  <button class="rounded-md py-1 px-4 bg-yellow-400 border-b border-black">

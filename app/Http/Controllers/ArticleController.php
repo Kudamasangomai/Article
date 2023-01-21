@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\category;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -15,7 +16,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderBy('created_at','desc')->get();
+        $articles = Article::with(['tags'])->latest()->get();
         return view('articles.articleslist',compact('articles'));
     }
 
@@ -26,8 +27,9 @@ class ArticleController extends Controller
      */
     public function create()
     {
+        $tags = Tag::all();
         $categories = category::all();      
-        return view('articles.articleform',compact('categories'));
+        return view('articles.articleform',compact('categories','tags'));
     }
 
     /**
@@ -45,18 +47,30 @@ class ArticleController extends Controller
             $request->file('image')->storeAs('uploads', $filename, 'public');
         }
       
-       $form = $request->validate([
+       $request->validate([
             'title' => 'required|max:30|min:3',
             'article' => 'required',
             'image'=>'image|nullable|max:1999',
-            // 'category' => 'required',
-            // 'category_id'=>'required'
         ]);
-        $form['user_id'] = auth()->user()->id;
-        $form['image'] = $filename ?? null;
-        $form['category_id']= $request->category;
-      
-        Article::create($form);
+
+
+        $form = Article::create([
+            'title' => $request->title,
+            'article' => $request->article,
+            'image' => $filename ?? null,
+            'user_id' => auth()->user()->id,
+            'category_id'=> $request->category,
+        ]);
+        // $form['user_id'] = auth()->user()->id;
+        // $form['image'] = $filename ?? null;
+        // $form['category_id']= $request->category;      
+        // // Article::create($form);
+        //dd($form);
+
+
+        if ($request->has('tags')) {
+            $form->tags()->attach($request->tags);
+        }
         return redirect('/articles')->with('success','Post Created');
     }
 
