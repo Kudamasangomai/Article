@@ -1,9 +1,10 @@
 <?php
 
+use App\Models\Article;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagsController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoriesController;
-use App\Models\Article;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::group(['middleware' => 'auth'], function(){
 
     Route::resource('articles',ArticleController::class);
     Route::resource('categories',CategoriesController::class);
+    Route::resource('tags',TagsController::class);
 });
 
 require __DIR__.'/auth.php';

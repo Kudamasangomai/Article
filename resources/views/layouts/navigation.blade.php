@@ -4,9 +4,9 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center">
+                <div class="shrink-0 flex items-center h-1 rounded-full">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-400" />
+                        <x-application-logo class="block w-auto fill-current text-gray-400" />
                     </a>
                 </div>
 
@@ -47,6 +47,7 @@
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
+                        <p class="pl-4 text-gray-700 font-semibold"><a href="/tags">Manage Tags</a></p>
                     </x-slot>
                 </x-dropdown>
             </div>
