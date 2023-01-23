@@ -4,7 +4,7 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <div class="shrink-0 flex items-center h-1 rounded-full">
+                <div class="shrink-0 flex items-center h1 rounded-full mt-12">
                     <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block w-auto fill-current text-gray-400" />
                     </a>
