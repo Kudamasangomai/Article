@@ -4,10 +4,10 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class Tagshome extends Component
+class TagObject extends Component
 {
     public function render()
     {
-        return view('livewire.tagshome');
+        return view('livewire.tag-object');
     }
 }

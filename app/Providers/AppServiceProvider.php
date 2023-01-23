@@ -28,9 +28,9 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
            view()->composer('dashboard', function ($view) 
        {
-        $view->with('articles', $articles = Article::orderBy('created_at','desc')->get());
+        $view->with('articles', $articles = Article::with(['tags'])->latest()->get());
 
-
+        // $view->with('articles', $articles = Article::orderBy('created_at','desc')->get());
         });
 
     }

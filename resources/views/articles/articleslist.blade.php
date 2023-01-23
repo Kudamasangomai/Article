@@ -40,7 +40,7 @@
                             <p class="mx-3"> like </p>    <p> Comment </p>
                           </div>
                          <div class="bg-gray-400 py-2 px-1 rounded-lg">
-                          #tags ->
+                         <p class="font-bold">Tags</p>
                           @foreach ($article->tags as $tag)
                           {{ $tag->name }} /
                           @endforeach
