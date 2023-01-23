@@ -13,17 +13,17 @@ class Tags extends Component
     public $tagslist = true;
     public $add_tag_form = false;
     public  $tagobject = false;
-    public $name,$tagid;
+    public $name, $tagid;
 
     public function render()
     {
-     
+
         $tags = Tag::paginate(5);
-        return view('livewire.tags',compact('tags'));
+        return view('livewire.tags', compact('tags'));
     }
     protected $rules = [
         'name' => 'required|max:15|min:3|unique:tags|alpha',
-       
+
     ];
     public function updated($property)
     {
@@ -38,30 +38,30 @@ class Tags extends Component
         $this->tagid = $tag->id;
         $this->updatetagform = true;
         $this->tagslist = false;
-       
-
     }
-// update the tag data
+    // update the tag data
     public function updatetag()
     {
-        $this->validate();
+        $this->validate([
+            'name' => 'required|max:15|min:3|alpha',
+        ]);
         try {
             Tag::whereId($this->tagid)->update([
-           'name'=> $this->name,
+                'name' => $this->name,
             ]);
-            session()->flash('success','Tag Updated');
+            session()->flash('success', 'Tag Updated');
             $this->tagslist = True;
             $this->add_tag_form = false;
             $this->reset();
         } catch (\Throwable $th) {
-            session()->flash('error','Soemthing ent Wrong');
+            session()->flash('error', 'Soemthing ent Wrong');
         }
-        
     }
 
     // returns back to page or component which consist of tags list
     // false deactivate the acctive component
-    public function return(){
+    public function return()
+    {
         $this->updatetagform = false;
         $this->tagslist = true;
     }
@@ -81,18 +81,13 @@ class Tags extends Component
             Tag::create([
                 'name' => $this->name,
             ]);
-            session()->flash('success','Tag Created');
+            session()->flash('success', 'Tag Created');
             $this->tagslist = True;
             $this->add_tag_form = false;
             $this->reset();
-        } catch 
-        
-        (\Throwable $th) {
-           session()->flash('error','Soemthing ent Wrong');
+        } catch (\Throwable $th) {
+            session()->flash('error', 'Soemthing ent Wrong');
         }
-
-
-        
     }
 
     public function view_tag($id)
@@ -100,10 +95,6 @@ class Tags extends Component
         $tag = Tag::find($id);
         $this->name = $tag->name;
         $this->tagobject = True;
-        $this->tagslist= false;
-
-
+        $this->tagslist = false;
     }
-
-   
 }
