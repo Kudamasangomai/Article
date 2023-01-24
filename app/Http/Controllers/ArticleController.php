@@ -17,7 +17,8 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::with(['tags'])->latest()->get();
-        return view('articles.articleslist',compact('articles'));
+        // return view('articles.articleslist',compact('articles'));
+        return view('dashboard',compact('articles'));
     }
 
     /**

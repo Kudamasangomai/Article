@@ -27,7 +27,12 @@
                     <div class="bg-gray-100 md:flex md:flex-row mb-2 border-b mr-1">
                         
                         <div class="p-2">
-                            <img src="https://mdbootstrap.com/img/new/slides/041.jpg" class="max-w-full h-auto  mt-1" alt="..." />
+                            @if ($article->image)
+                          <img src="/storage/uploads/{{$article->image}}" class="max-w-full h-auto  mt-1" alt="..." />
+
+                          @else
+
+                          @endif 
                             <p class=" text-2xl font-bold mt-2 ">
                                 <a href="{{ route('article_object', $article) }}">{{ $article->title }} </a>
                                 <sup class="font-semibold text-gray-500 mb-0">{{ $article->category->name }}</sup>  
@@ -39,11 +44,12 @@
                            {!! Str::words($article->article,30) !!}<sub>Read more</sub>
                           </p>
                           <p class="font-semibold text-xl mb-2 text-gray-800">{{ $article->user->name }}</p>
-                          <div class="flex justify-start">
-                            <p class="mx-3"> like </p>    <p> Comment </p>
-                          </div>
-                         
-                
+                        
+                 
+                          
+                         @livewire('like-unlike',['id' => $article->id])
+                       
+
                         </div>
                        
                       </div>
