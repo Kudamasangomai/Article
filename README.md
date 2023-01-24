@@ -4,3 +4,6 @@
 
 
 ## About Articles
+
+
+Articles App is a Medium/Dev clone that allows users to publish articles, organize them by tags, like them, and follow other users. 
