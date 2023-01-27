@@ -73,7 +73,7 @@
 
                     @endforeach
                 </div>
-                <div class="p-6 bg-white border-b  border-red-700 lg:w-1/4">
+                <div class="p-6 bg-white border-b  border-red-700 lg:w-1/5">
 
                 </div>
 

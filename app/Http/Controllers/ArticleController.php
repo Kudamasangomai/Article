@@ -19,7 +19,7 @@ class ArticleController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        $articles = Article::where('user_id', $user_id)->with(['tags'])->latest()->get();
+        $articles = Article::where('user_id', $user_id)->with(['tags','category','user'])->latest()->get();
 
 
         // return view('articles.articleslist',compact('articles'));
@@ -88,12 +88,15 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        $article = Article::find($id);
+        // $article = Article::find($id);
+        $article = Article::with(['category','tags'])->find($id);
         return view('articles.article', compact('article'));
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified resource.  
+     *       $post = Post::with('tags')->findOrFail($id);
+        
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
