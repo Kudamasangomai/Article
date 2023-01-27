@@ -69,6 +69,7 @@
           <label>Add comment</label>
           <form method="POST" action="{{ route('comments.store') }}">
             @csrf
+            <input type="hidden" name="article_id" value="{{ $article->id }}"/>
           <textarea class="w-full h-18 rounded-md" name="comment">
           </textarea>
           <button class="bg-green-600 py-1 px-3 rounded-md text-white">Comment</button>

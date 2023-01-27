@@ -34,10 +34,23 @@ class comment extends Controller
      */
     public function store(CommentRequest  $request)
     {
-        comment::create($request->validated());
+        
+        comment::create([
+            'comment'=>$request->comment,
+            'user_id' => auth()->user()->id,
+            'article_id' => $request->article_id,
+
+        ]);
+        return redirect()->back();
 
     }
 
+    // $post = auth()->user()->posts()->create([
+    //     'title' => $request->title,
+    //     'image' => $filename ?? null,
+    //     'post' => $request->post,
+    //     'category_id' => $request->category
+    // ]);
     /**
      * Display the specified resource.
      *
