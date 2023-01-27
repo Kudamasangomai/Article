@@ -89,7 +89,7 @@ class ArticleController extends Controller
     public function show($id)
     {
         // $article = Article::find($id);
-        $article = Article::with(['category','tags'])->find($id);
+        $article = Article::with(['category','tags','user'])->find($id);
         return view('articles.article', compact('article'));
     }
 
