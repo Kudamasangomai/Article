@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\category;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
-
-class CategoriesController extends Controller
+use App\Http\Requests\CommentRequest;
+class comment extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +13,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = category::all();
-        return view('categories.categories',compact('categories')) ;
+        //
     }
 
     /**
@@ -36,12 +32,10 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(CommentRequest  $request)
     {
-     
-        category::create($request->validated());
+        comment::create($request->validated());
 
-      return redirect()->route('articles.create');
     }
 
     /**
@@ -63,8 +57,7 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $category = category::find($id);
-        return view('categories.categoryedit',compact('category'));
+        //
     }
 
     /**
@@ -74,12 +67,9 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCategoryRequest $request,category $category)
+    public function update(Request $request, $id)
     {
-        $category->update($request->validated());
-        return redirect()->route('categories.index')->with('success','Category Updated');
-      
-    
+        //
     }
 
     /**
@@ -90,12 +80,6 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        $category = category::find($id);
-        if($category->article()->count()){
-            return back()->with('error', 'Cannot delete, category has  A posts, delete The Post.');
-        }
-
-        $category->delete();
-        return redirect()->route('categories.index')->with('success','Category Deleted');
+        //
     }
 }

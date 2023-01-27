@@ -28,5 +28,14 @@ class LikeUnlike extends Component
     {
     }
 
+    public function like_discussion($id)
+    {
+      dd($id);
+        // $likes  = new discussion_likes();
+        // $likes->discussion_id = $id;
+        // $likes->user_id = Auth::user()->id;
+        // $likes->save();
+    }
+
  
 }

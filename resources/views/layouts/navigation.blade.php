@@ -15,11 +15,13 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @livewire('search')
                 </div>
             </div>
       
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+               
                 <button class="bg-blue-500 rounded-sm text-white p-1 mr-4 border-b-2
                  border-blue-500 hover:bg-white hover:text-black"  align="right"> <a href="/articles/create"> Create Article </a></button>
                 <x-dropdown align="right" width="48">
@@ -47,7 +49,8 @@
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
                         </form>
-                        <p class="pl-4 text-gray-700 font-semibold"><a href="/tags">Manage Tags</a></p>
+                        <p class="px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"><a href="/tags">Manage Tags</a></p>
+                        <p class="px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"><a href="/articles">Articles</a></p>
                     </x-slot>
                 </x-dropdown>
             </div>
