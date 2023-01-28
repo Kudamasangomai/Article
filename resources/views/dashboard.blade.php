@@ -5,10 +5,16 @@
         </h2>
     </x-slot>
     <section class="text-gray-600 body-font">
+      
       <div class="container px-5 py-24 mx-auto">
         
         <div class="flex flex-wrap m-4">
-          
+          @if(session('success'))
+          <div class="bg-green-500 rounded-sm p-2 w-full text-white" x-data="{show:true}"
+              x-init="setTimeout(()=> show=false,3000)" x-show="show">
+              {{session('success')}}
+          </div>
+          @endif
           @foreach($articles as $article)
           <div class="p-4 w-2/3">
             <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">

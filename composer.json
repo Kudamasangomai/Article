@@ -16,7 +16,9 @@
         "laravel/breeze": "1.9.2",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
-        "livewire/livewire": "^2.10"
+        "laravelcollective/html": "^6.3",
+        "livewire/livewire": "^2.10",
+        "spatie/laravel-permission": "^5.8"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

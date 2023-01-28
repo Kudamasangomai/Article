@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
+use App\Models\comment as commentmodel;
 use App\Http\Requests\CommentRequest;
+
 class comment extends Controller
 {
     /**
@@ -32,16 +35,21 @@ class comment extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CommentRequest  $request)
+    public function store(Request $request)
     {
-        
-        comment::create([
-            'comment'=>$request->comment,
-            'user_id' => auth()->user()->id,
-            'article_id' => $request->article_id,
-
+     
+       $form = $request->validate([
+            'comment' => 'required',
+         
         ]);
-        return redirect()->back();
+        $form['comment'] = $request->comment;
+        $form['user_id'] = auth()->id();
+        $form['article_id'] =  $request->article_id;
+        commentmodel::create($form);
+        return redirect('/dashboard')->with('success','Comment Created');
+
+ 
+        // return redirect()->back();
 
     }
 

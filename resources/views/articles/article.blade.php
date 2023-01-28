@@ -72,7 +72,7 @@
             <input type="hidden" name="article_id" value="{{ $article->id }}"/>
           <textarea class="w-full h-18 rounded-md" name="comment">
           </textarea>
-          <button class="bg-green-600 py-1 px-3 rounded-md text-white">Comment</button>
+          <button type="submit" class="bg-green-600 py-1 px-3 rounded-md text-white">Comment</button>
         </form>
         </div>
         <div class="p-6 bg-white border-b  border-red-700 lg:w-1/4">
