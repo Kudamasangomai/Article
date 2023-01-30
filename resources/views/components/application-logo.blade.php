@@ -1,1 +1,1 @@
-<img src="{{ asset('logo/logo.jpg') }}" class="w-32 rounded-full border-2 border-blue-500"  alt="description of myimage">
+<img src="{{ asset('logo/logo.jpg') }}" class="w-20 rounded-full border-2 border-blue-500"  alt="description of myimage">

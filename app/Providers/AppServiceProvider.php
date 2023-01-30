@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Article;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -29,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
            view()->composer('dashboard', function ($view) 
        {
         $view->with('articles', $articles = Article::with(['tags','category','user'])->latest()->get());
+        $view->with('tags',$tags = Tag::all());
 
         // $view->with('articles', $articles = Article::orderBy('created_at','desc')->get());
         });
