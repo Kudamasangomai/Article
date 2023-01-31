@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use App\Models\Article;
 use App\Models\category;
+use App\Models\Article_comments;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\ArticleUpdateformRequest;
+
 
 class ArticleController extends Controller
 {
@@ -19,10 +21,7 @@ class ArticleController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        $articles = Article::where('user_id', $user_id)->with(['tags','category','user'])->latest()->get();
-
-
-        // return view('articles.articleslist',compact('articles'));
+        $articles = Article::where('user_id', $user_id)->with(['tags', 'category', 'user'])->latest()->get();
         return view('articles.articleslist', compact('articles'));
     }
 
@@ -67,11 +66,6 @@ class ArticleController extends Controller
             'user_id' => auth()->user()->id,
             'category_id' => $request->category,
         ]);
-        // $form['user_id'] = auth()->user()->id;
-        // $form['image'] = $filename ?? null;
-        // $form['category_id']= $request->category;      
-        // // Article::create($form);
-        //dd($form);
 
 
         if ($request->has('tags')) {
@@ -89,7 +83,9 @@ class ArticleController extends Controller
     public function show($id)
     {
         // $article = Article::find($id);
-        $article = Article::with(['category','tags','user'])->find($id);
+        $article = Article::with(['category', 'tags', 'user', 'comments'])->find($id);
+        // $comments = Article_comments::Where('article_id',$id)->get();
+        // dd($article);
         return view('articles.article', compact('article'));
     }
 
@@ -106,7 +102,7 @@ class ArticleController extends Controller
         $article =  Article::find($article);
         $tags = Tag::all();
         $categories = category::all();
-        return view('articles.editarticle',compact('article','categories', 'tags'));
+        return view('articles.editarticle', compact('article', 'categories', 'tags'));
     }
 
     /**
@@ -116,13 +112,11 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ArticleUpdateformRequest  $request,Article $article)
+    public function update(ArticleUpdateformRequest  $request, Article $article)
     {
-   
+
         $article->update($request->validated());
-        return redirect()->route('article_object',$article)->with('success','Article Updated');
-        
-        
+        return redirect()->route('article_object', $article)->with('success', 'Article Updated');
     }
 
     /**
@@ -142,9 +136,9 @@ class ArticleController extends Controller
 
 
 
-     
+
 
         // $post->tag()->detach();
-    
+
     }
 }

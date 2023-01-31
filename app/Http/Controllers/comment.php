@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use App\Models\comment as commentmodel;
+use App\Models\Article_Comments as commentmodel;
 use App\Http\Requests\CommentRequest;
 
 class comment extends Controller
@@ -46,10 +46,7 @@ class comment extends Controller
         $form['user_id'] = auth()->id();
         $form['article_id'] =  $request->article_id;
         commentmodel::create($form);
-        return redirect('/dashboard')->with('success','Comment Created');
-
- 
-        // return redirect()->back();
+        return redirect()->back()->with('success','Comment Created');
 
     }
 

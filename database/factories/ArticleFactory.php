@@ -18,7 +18,6 @@ class ArticleFactory extends Factory
             'article' => $this->faker->unique()->safeEmail,
             'user_id' =>$this->faker->numberBetween(1,22),
             'category_id' =>$this->faker->numberBetween(1,2),
-            
             'image'=> null,
         ];
     }

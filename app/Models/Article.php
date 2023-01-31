@@ -28,6 +28,6 @@ class Article extends Model
 
     public function comments()
     {
-        return $this->belongsToMany(comment::class);
+        return $this->hasMany('App\Models\Article_comments');
     }
 }
