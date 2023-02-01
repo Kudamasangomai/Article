@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Article;
+use App\Models\category;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
@@ -31,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
        {
         $view->with('articles', $articles = Article::with(['tags','category','user','likes','comments'])->latest()->get());
         $view->with('tags',$tags = Tag::all());
+        $view->with('categories',$categories = category::all());
 
         // $view->with('articles', $articles = Article::orderBy('created_at','desc')->get());
         });

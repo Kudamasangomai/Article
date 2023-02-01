@@ -41,7 +41,9 @@
                           href="{{ route('article_object', $article) }}">{{ $article->title }} </a></h2>
                     </div>
                     <div class="lg:w-2/4 flex flex-row">
-                      <h3 class="text-gray-500 mb-3 font-medium text-sm">{{ $article->created_at->format('d F Y')}}
+                     
+                      <h3 class="text-gray-500 mb-3 font-medium text-sm">{{ $article->created_at->format('d F Y - h m')}}
+                        
                         <sub>{{ $article->created_at->diffForHumans() }}</sub>
                       </h3>
                     </div>
@@ -54,7 +56,7 @@
 
                   <div class="py-2 px-1 rounded-lg mt-2">
                     @foreach ($article->tags as $tag)
-                    | #{{ $tag->name }} |
+                     #{{ $tag->name }} 
                     @endforeach
 
 
@@ -130,11 +132,18 @@
           <div class="p-6 bg-white border-b  border-red-700 lg:w-1/4">
 
             <h4 class="text-black text-base">Tags</h4>
-            @foreach ($tags as $tag)
-            <p> #{{ $tag->name }} </p>
+            @foreach($tags as $tag)
+            <p class="mt-1"> #{{ $tag->name }} </p>
+            @endforeach
+            <hr>
+            <h4 class="text-black text-base mt-2 underline">Categories</h4>
+            @foreach($categories as $cat)
+            <p class="mt-1"> #{{ $cat->categoryname }} </p>
             @endforeach
 
           </div>
+
+        
 
 
         </div>

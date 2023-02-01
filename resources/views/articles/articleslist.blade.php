@@ -36,10 +36,29 @@
                           </sub>
                           </p>
                           <p class="font-semibold text-xl mb-2 text-gray-800">{{ $article->user->name }}</p>
-                          <div class="flex justify-start">
-                            <p class="mx-3"> like </p>    <p> Comment </p>
+                          <div class="flex justify-start mt-2" x-data="{open:false}">
+                            @if(Auth::user()->id == $article->user_id)
+                            <button class="bg-red-500 px-4 py-1 rounded-md mr-2" x-on:click="open = !open"
+                              x-show="!open">Delete</button>
+                            <button class="bg-blue-500 px-4 py-1 rounded-md" x-show="!open">
+                              <a href="{{ route('articles.edit',$article) }}">
+                                Edit
+            
+                              </a>
+                            </button>
+            
+                            <form action="{{ route('articles.destroy', $article->id) }}" method="POST">
+                              <input type="hidden" name="_method" value="DELETE">
+                              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                              <button x-cloak class="px-2 py-1 text-white bg-green-600 rounded-sm" x-show="open"> Yes Delete
+                              </button>
+                            </form>
+            
+                            <button class="bg-yellow-500 px-4 py-1 rounded-md" x-show="open" x-on:click="open = ! open"
+                              x-cloak>Cancel</button>
+                            @endif
                           </div>
-                         <div class="bg-gray-400 py-2 px-1 rounded-lg">
+                         <div class=" py-2 px-1 rounded-lg w-full mt-5">
                          <p class="font-bold">Tags</p>
                           @foreach ($article->tags as $tag)
                           {{ $tag->name }} /

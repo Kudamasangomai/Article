@@ -42,11 +42,39 @@
                  <textarea class="rounded-md text-black  h-20 w-full mb-2 bg-gray-100" id="editor" name="article">
                     {{ $article->article }}
                 </textarea>
+
+                <p class=" text-md font-bold mt-2">Category </p>
+                @error('category_id')
+                <p class="bg-red-400 mb-1 rounded-sm p-2 text-white"> {{ $message }}</p>
+            @enderror
+            <select  name="category" id="category" class="block w-full mt-1 mb-2">
+                <option value="0">{{ $article->category->categoryname}}</option>
+                @foreach ($categories as $category)
+                    <option  value="{{ $category->id }}"
+                            @if ($category->id == old('category')) selected @endif>{{ $category->categoryname }}</option>
+                @endforeach
+            </select>
+<div class="py-2">
+            <span class="text-gray-700 text-md mt-2">
+                Tags
+            
+            </span>
+            <select name="tags[]" class="block w-full my-2" multiple>
+            @foreach ($tags as $tag )
+            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+            @endforeach
+        </select>
+      Selected Tags ->  
+        @foreach ($article->tags as $tag)
+        | {{ $tag->name }} |
+        @endforeach
+</div>
+                <div class="mt-3">
                  <button class="rounded-md py-1 px-4 bg-green-500 border-b border-black">Update</button>
                  <button class="rounded-md py-1 px-4 bg-yellow-400 border-b border-black">
                     <a href="/dashboard">
                     Cancel</a></button>
-                 
+                </div>
                     </form>
 
 

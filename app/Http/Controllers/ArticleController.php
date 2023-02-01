@@ -114,8 +114,24 @@ class ArticleController extends Controller
      */
     public function update(ArticleUpdateformRequest  $request, Article $article)
     {
+        // $tags = explode(',', $request->tags);
+        if ($request->has('image')) {
+            $filename = time() . '_' . $request->file('image')->getClientOriginalName();
+            $request->file('image')->storeAs('uploads', $filename, 'public');
+        }
 
-        $article->update($request->validated());
+        $article->update([
+            'title' => $request->title,
+            'image' => $filename ?? $article->image,
+            'article' => $request->article,
+
+        ]);
+        $newTags = [];
+        if ($request->has('tags')) {
+            $article->tags()->sync($request->tags);
+        }
+
+        // $article->update($request->validated());
         return redirect()->route('article_object', $article)->with('success', 'Article Updated');
     }
 
@@ -131,6 +147,7 @@ class ArticleController extends Controller
         if ($article->image) {
             Storage::delete('public/uploads/' . $article->image);
         }
+        // $article->tags()->detach();
         $article->delete();
         return redirect('/dashboard')->with('success', 'Article Deleted');
 
