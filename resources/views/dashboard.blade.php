@@ -84,11 +84,31 @@
                           19.4 107.4 19.4 141.4 0 256-93.1 256-208S397.4 32 256 32z" />p
                       </svg>
                     </a> </div> --}}
-
+<span class="bg-green-500 rounded-md px-3 mr-2"> {{ $article->likes->count() }}   {{ Str::plural('like',$article->likes->count()) }}</span>
+                    @if ($article->userliked(auth()->user()))
+                    <p class="mr-2">
+                      <form action="{{ route('likes.destroy', $article->id ) }}" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                          <button class="mr-2">
+                       
+                          UnLike
+                          </button>
+                       </form>
+                    </p>
+                    @else
                  
-                    <p class="mr-2">like </p>
-                    
-                    <p class="mr-2">Unlike </p>
+                    <form action="{{ route('likes.store', $article->id ) }}" method="POST">
+                      @csrf
+                        <button class="mr-2">
+                     
+                        Like
+                        </button>
+                     </form>
+                    @endif
+                 
+                
+                  
                     
                     <p class="mr-2">
                     

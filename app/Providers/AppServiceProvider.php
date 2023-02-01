@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
            view()->composer('dashboard', function ($view) 
        {
-        $view->with('articles', $articles = Article::with(['tags','category','user'])->latest()->get());
+        $view->with('articles', $articles = Article::with(['tags','category','user','likes','comments'])->latest()->get());
         $view->with('tags',$tags = Tag::all());
 
         // $view->with('articles', $articles = Article::orderBy('created_at','desc')->get());

@@ -15,8 +15,8 @@ class ArticleFactory extends Factory
     {
         return [
             'title' => $this->faker->name,
-            'article' => $this->faker->unique()->safeEmail,
-            'user_id' =>$this->faker->numberBetween(1,22),
+            'article' => $this->faker->sentence(200),
+            'user_id' =>$this->faker->numberBetween(1,5),
             'category_id' =>$this->faker->numberBetween(1,2),
             'image'=> null,
         ];

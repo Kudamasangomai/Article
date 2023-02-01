@@ -1,11 +1,12 @@
 <?php
 
 use App\Models\Article;
+use App\Http\Controllers\comment;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\comment;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('categories',CategoriesController::class);
     Route::resource('tags',TagsController::class);
     Route::resource('comments',Comment::class);
+    Route::post('/likes/{id}/store',[LikeController::class,'store'])->name('likes.store');
+    Route::delete('/likes/{id}/destroy',[LikeController::class,'destroy'])->name('likes.destroy');;
 });
 
 require __DIR__.'/auth.php';

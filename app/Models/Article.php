@@ -30,4 +30,15 @@ class Article extends Model
     {
         return $this->hasMany('App\Models\Article_comments');
     }
+
+    public function likes()
+    {
+        return $this->hasMany('App\Models\article_likes');
+
+    }
+
+    public function userliked(User $user)
+    {
+        return $this->likes->contains('user_id', $user->id);
+    }
 }
