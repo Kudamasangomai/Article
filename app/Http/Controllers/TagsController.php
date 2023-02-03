@@ -23,7 +23,7 @@ class TagsController extends Controller
      */
     public function create()
     {
-        //
+        //refer to livewire
     }
 
     /**
@@ -34,7 +34,7 @@ class TagsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       //refer to livewire
     }
 
     /**
@@ -56,7 +56,7 @@ class TagsController extends Controller
      */
     public function edit($id)
     {
-        //
+         //refer to livewire
     }
 
     /**
@@ -68,7 +68,7 @@ class TagsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+            //refer to livewire
     }
 
     /**

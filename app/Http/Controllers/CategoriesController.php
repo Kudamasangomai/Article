@@ -27,7 +27,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        //being handle by live wire
     }
 
     /**

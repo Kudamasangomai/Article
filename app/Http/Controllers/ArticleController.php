@@ -20,8 +20,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $user_id = auth()->user()->id;
-        $articles = Article::where('user_id', $user_id)->with(['tags', 'category', 'user'])->latest()->get();
+        // Logged in user gets Articles they have posted
+        $articles = Article::where('user_id', auth()->user()->id)->with(['tags', 'category', 'user'])->latest()->get();
         return view('articles.articleslist', compact('articles'));
     }
 
@@ -82,10 +82,7 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        // $article = Article::find($id);
         $article = Article::with(['category', 'tags', 'user', 'comments'])->find($id);
-        // $comments = Article_comments::Where('article_id',$id)->get();
-        // dd($article);
         return view('articles.article', compact('article'));
     }
 
@@ -150,12 +147,6 @@ class ArticleController extends Controller
         // $article->tags()->detach();
         $article->delete();
         return redirect('/dashboard')->with('success', 'Article Deleted');
-
-
-
-
-
-        // $post->tag()->detach();
 
     }
 }

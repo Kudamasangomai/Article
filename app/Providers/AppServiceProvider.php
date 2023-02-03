@@ -30,11 +30,13 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
            view()->composer('dashboard', function ($view) 
        {
-        $view->with('articles', $articles = Article::with(['tags','category','user','likes','comments'])->latest()->get());
+        $view->with('articles', $articles = Article::with(['tags','category','user','likes','comments'])->latest()->paginate(5));
         $view->with('tags',$tags = Tag::all());
         $view->with('categories',$categories = category::all());
+        $view->with('Latest_articles', $Latest_articles = Article::latest()->take(5)->get());
+        
 
-        // $view->with('articles', $articles = Article::orderBy('created_at','desc')->get());
+
         });
 
     }
