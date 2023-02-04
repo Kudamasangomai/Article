@@ -41,9 +41,10 @@
                           href="{{ route('article_object', $article) }}">{{ $article->title }} </a></h2>
                     </div>
                     <div class="lg:w-2/4 flex flex-row">
-                     
-                      <h3 class="text-gray-500 mb-3 font-medium text-sm">{{ $article->created_at->format('d F Y - h m')}}
-                        
+
+                      <h3 class="text-gray-500 mb-3 font-medium text-sm">{{ $article->created_at->format('d F Y - h
+                        m')}}
+
                         <sub>{{ $article->created_at->diffForHumans() }}</sub>
                       </h3>
                     </div>
@@ -51,99 +52,106 @@
                   </div>
 
                   <h3 class="text-gray-500 font-semibold">{{ $article->user->name }}</h3>
-                  
+
                   <p class="mb-4">{!! Str::words($article->article,30) !!}<sub>Read more</sub></p>
 
-                  <p class="mb-4">{!! Str::of($article->article)->wordCount()  !!} words</p>
+                  <p class="mb-4">{!! Str::of($article->article)->wordCount() !!} words</p>
 
 
-                
-           
+
+
 
                   <div class="py-2 px-1 rounded-lg mt-2">
                     @foreach ($article->tags as $tag)
-                     #{{ $tag->name }} 
+                    #{{ $tag->name }}
                     @endforeach
 
 
-                 
+
                   </div>
                   <div class="mr-4 flex flex-row">
-<span class="bg-green-500 rounded-md px-3 mr-2"> {{ $article->likes->count() }}   {{ Str::plural('like',$article->likes->count()) }}</span>
+                    <span class="bg-green-500 rounded-md px-3 mr-2"> {{ $article->likes->count() }} {{
+                      Str::plural('like',$article->likes->count()) }}</span>
                     @if ($article->userliked(auth()->user()))
                     <p class="mr-2">
-                      <form action="{{ route('likes.destroy', $article->id ) }}" method="POST">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                          <button class="mr-2">
-                       
-                          UnLike
-                          </button>
-                       </form>
+                    <form action="{{ route('likes.destroy', $article->id ) }}" method="POST">
+                      <input type="hidden" name="_method" value="DELETE">
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                      <button class="mr-2">
+
+                        UnLike
+                      </button>
+                    </form>
                     </p>
                     @else
-                 
+
                     <form action="{{ route('likes.store', $article->id ) }}" method="POST">
                       @csrf
-                        <button class="mr-2">
-                     
+                      <button class="mr-2">
+
                         Like
-                        </button>
-                     </form>
+                      </button>
+                    </form>
                     @endif
-                 
-                
-                  
-                    
+
+
+
+
                     <p class="mr-2">
-                    
+
                       {{ Str::plural('Comment',$article->comments->count()) }}({{ $article->comments->count() }})
-                 
+
                     </p>
 
-                    
-                     
-                 
+
+
+
                   </div>
 
                 </div>
               </div>
             </div>
-   
+
             @endforeach
-      
+
             {{ $articles->links() }}
-      
-          
+
+
           </div>
           <div class="p-6 bg-white border-b  border-red-700 lg:w-1/4"
-          x-data="{open:false,view:false}">
+            x-data="{open:false,view:false,open_article:false}" x-cloak>
 
-           <button> <h4 class="text-black font-bold text-lg" x-on:click="open = !open">Tags</h4></button>
+            <button>
+              <h4 class="text-black font-bold text-lg underline" x-on:click="open = !open">Tags</h4>
+            </button>
             <div x-show="open">
-            @foreach($tags as $tag)
-            <p class="mt-1"> #{{ $tag->name }} </p>
-            @endforeach
+              @foreach($tags as $tag)
+              <p class="mt-1"> #{{ $tag->name }} </p>
+              @endforeach
             </div>
             <hr>
             <h4 class="text-black mt-2 underline font-bold text-lg" x-on:click="view = !view">Categories</h4>
             <div x-show="view">
-            @foreach($categories as $cat)
-            <p class="mt-1"> #{{ $cat->categoryname }} </p>
-            @endforeach
+              @foreach($categories as $cat)
+              <p class="mt-1"> #{{ $cat->categoryname }} </p>
+              @endforeach
             </div>
 
 
-            <h4 class="text-black  mt-2 underline font-bold text-lg">Latest Topics</h4>
-            @foreach($Latest_articles as $Latest_articles)
-            <p class="mt-1"> #{{ $Latest_articles->title }} </p>
-            @endforeach
+            <h4 class="text-black  mt-2 underline font-bold text-lg" x-on:click="open_article = !open_article">Latest
+              Topics</h4>
+            <div x-show="open_article">
+              @foreach($Latest_articles as $Latest_articles)
+              <p class="mt-1"> <a href="{{ route('article_object', $Latest_articles->id)  }}">{{ $Latest_articles->title
+                  }}</a> </p>
+              @endforeach
+            </div>
 
-            
+
 
           </div>
 
-        
+
 
 
         </div>

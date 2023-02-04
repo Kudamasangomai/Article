@@ -2,23 +2,29 @@
 
 namespace App\Mail;
 
+use App\Models\Article;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ArticleCommented extends Mailable
+class Article_Commented extends Mailable
 {
     use Queueable, SerializesModels;
+
+    public $commenter;
+    public $article;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $commenter,Article $article)
     {
-        //
+        $this->commenter =$commenter;
+        $this->article = $article;
     }
 
     /**
@@ -28,6 +34,7 @@ class ArticleCommented extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->markdown('article.article_commented')
+                    ->subject('New Comment on Your Article');
     }
 }

@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use App\Models\Article_Comments as commentmodel;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\CommentRequest;
+use App\Models\Article_Comments as commentmodel;
+use App\Mail\Article_Commented;
+use App\Models\Article;
+use App\Models\Article_comments;
+
 
 class comment extends Controller
 {
@@ -37,7 +42,7 @@ class comment extends Controller
      */
     public function store(Request $request)
     {
-     
+    
        $form = $request->validate([
             'comment' => 'required',
          
@@ -46,16 +51,13 @@ class comment extends Controller
         $form['user_id'] = auth()->id();
         $form['article_id'] =  $request->article_id;
         commentmodel::create($form);
+        // worked but not bestway of doing it i think
+        $article = Article::find($request->article_id);   
+        Mail::to($article->user)->send(new Article_Commented(auth()->user(),$article));      
+      
         return redirect()->back()->with('success','Comment Created');
-
     }
 
-    // $post = auth()->user()->posts()->create([
-    //     'title' => $request->title,
-    //     'image' => $filename ?? null,
-    //     'post' => $request->post,
-    //     'category_id' => $request->category
-    // ]);
     /**
      * Display the specified resource.
      *
