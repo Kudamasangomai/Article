@@ -7,6 +7,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\TagsController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\LoginGithubController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,5 +47,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/likes/{id}/store',[LikeController::class,'store'])->name('likes.store');
     Route::delete('/likes/{id}/destroy',[LikeController::class,'destroy'])->name('likes.destroy');;
 });
+
+
+Route::get('auth/github', [LoginGithubController::class, 'redirectGithub']);
+Route::get('auth/github/callback', [LoginGithubController::class, 'handleGithubCallback']);
 
 require __DIR__.'/auth.php';

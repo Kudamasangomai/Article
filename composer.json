@@ -15,6 +15,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/breeze": "1.9.2",
         "laravel/framework": "^8.0",
+        "laravel/socialite": "^5.6",
         "laravel/tinker": "^2.0",
         "laravelcollective/html": "^6.3",
         "livewire/livewire": "^2.10",
