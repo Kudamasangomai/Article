@@ -1,10 +1,12 @@
 <?php
 
+
 use App\Models\Article;
 use App\Http\Controllers\comment;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\TagsController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\LoginGithubController;
@@ -51,5 +53,9 @@ Route::group(['middleware' => 'auth'], function(){
 
 Route::get('auth/github', [LoginGithubController::class, 'redirectGithub']);
 Route::get('auth/github/callback', [LoginGithubController::class, 'handleGithubCallback']);
+
+
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 require __DIR__.'/auth.php';

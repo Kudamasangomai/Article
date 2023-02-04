@@ -12,6 +12,8 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
+        @include('layouts.messages')
+
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
@@ -54,10 +56,19 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <a href="{{ url('auth/github') }}"  class="ml-2 mt-0 bg-green-500 text-white p-1 rounded-md">
+                <img src="{{ asset('logo/git.png') }}" class="w-8 h-8"/>
+                <a href="{{ url('auth/github') }}"  class=" mt-0 bg-black text-white p-1 ">
+                  
                     <strong>Github Login</strong>
           
             </a>
+
+       
+                <a href="{{ url('auth/google') }}">
+                    <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" 
+                    class="ml-2 mt-0  text-white p-1 rounded-md">
+                </a>
+           
             </div>
         </form>
     </x-auth-card>
