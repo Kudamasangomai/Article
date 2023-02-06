@@ -46,6 +46,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('categories',CategoriesController::class);
     Route::resource('tags',TagsController::class);
     Route::resource('comments',Comment::class);
+    Route::get('articles/{id}/user_articles', [ArticleController::class, 'user_articles'])->name('user_articles');
     Route::post('/likes/{id}/store',[LikeController::class,'store'])->name('likes.store');
     Route::delete('/likes/{id}/destroy',[LikeController::class,'destroy'])->name('likes.destroy');;
 });

@@ -25,6 +25,13 @@ class ArticleController extends Controller
         return view('articles.articleslist', compact('articles'));
     }
 
+
+    public function user_articles($id)
+    {
+        $articles = Article::where('user_id', $id)->with(['tags', 'category', 'user'])->get();
+        return view('articles.user_articles_list', compact('articles'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -51,7 +51,7 @@
 
                   </div>
 
-                  <h3 class="text-gray-500 font-semibold">{{ $article->user->name }}</h3>
+                  <h3 class="text-gray-500 font-semibold"><a href="{{ route('user_articles',$article->user_id) }}">{{ $article->user->name }}</a></h3>
 
                   <p class="mb-4">{!! Str::words($article->article,30) !!}<sub>Read more</sub></p>
 
