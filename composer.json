@@ -19,7 +19,9 @@
         "laravel/tinker": "^2.0",
         "laravelcollective/html": "^6.3",
         "livewire/livewire": "^2.10",
-        "spatie/laravel-permission": "^5.8"
+        "spatie/laravel-permission": "^5.8",      
+        "gallica-lupus/laravel-newsapi": "^1.0"
+        
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

@@ -116,7 +116,7 @@
 
             {{ $articles->links() }}
 
-
+     
           </div>
           <div class="p-6 bg-white border-b  border-red-700 lg:w-1/4"
             x-data="{open:false,view:false,open_article:false}" x-cloak>
@@ -145,6 +145,20 @@
               <p class="mt-1"> <a href="{{ route('article_object', $Latest_articles->id)  }}">{{ $Latest_articles->title
                   }}</a> </p>
               @endforeach
+            </div>
+
+            <div>
+              <select class="w-full p-1">
+                <option>BBC</option>
+                <option>Aljezira</option>
+                <option>CNBC</option>
+              </select>
+              <div>
+                
+                @foreach((array)$news as $new)
+                  {{ $new }}
+                @endforeach
+              </div>
             </div>
 
 

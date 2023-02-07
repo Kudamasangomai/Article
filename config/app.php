@@ -161,13 +161,14 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,
+        
 
         /*
          * Package Service Providers...
          */
-
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        NewsAPI\NewsAPIServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -230,6 +231,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'NewsAPI' => NewsAPI\Facades\NewsAPI::class,
 
     ],
 
