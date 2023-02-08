@@ -56,7 +56,7 @@
 
                   <p class="mb-4">{!! Str::words($article->article,30) !!}<sub>Read more</sub></p>
 
-                  <p class="mb-4">{!! Str::of($article->article)->wordCount() !!} words</p>
+                  <p class="mb-4">{!! Str::readingtime($article->article) !!} minutes read</p>
 
 
 

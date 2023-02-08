@@ -2,14 +2,15 @@
 
 namespace App\Providers;
 
+use json_decode;
 use App\Models\Tag;
 use App\Models\Article;
 use App\Models\category;
+use Illuminate\Support\Str;
 use NewsAPI\Facades\NewsAPI;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
-use json_decode;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -48,6 +49,10 @@ class AppServiceProvider extends ServiceProvider
         
    
 
+        });
+
+        Str::macro('readingtime',function ($user_article,$wordsperminute = 200){
+            return intval(ceil(Str::wordCount(strip_tags($user_article)) / $wordsperminute));
         });
 
     }
