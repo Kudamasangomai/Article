@@ -28,7 +28,7 @@
 
                 @if ($article->image)
                 <img src="/storage/uploads/{{$article->image}}"
-                  class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" alt="..." />
+                  class="flex-shrink-0 rounded-lg w-48 h-48 object-fit object-center sm:mb-0 mb-4" alt="..." />
 
                 @else
                 <img src="/storage/uploads/logo.jpg"
@@ -51,7 +51,8 @@
 
                   </div>
 
-                  <h3 class="text-gray-500 font-semibold"><a href="{{ route('user_articles',$article->user_id) }}">{{ $article->user->name }}</a></h3>
+                  <h3 class="text-gray-500 font-semibold"><a href="{{ route('user_articles',$article->user_id) }}">{{
+                      $article->user->name }}</a></h3>
 
                   <p class="mb-4">{!! Str::words($article->article,30) !!}<sub>Read more</sub></p>
 
@@ -116,10 +117,11 @@
 
             {{ $articles->links() }}
 
-     
+
           </div>
-          <div class="p-6 bg-white border-b  border-red-700 lg:w-1/4"
-            x-data="{open:false,view:false,open_article:false}" x-cloak>
+          <div class="p-6 bg-white border-b  border-red-700 lg:w-1/4" x-data="{open:false,view:false,open_article:false,cnn_open :false,
+              bbc_open :false,
+              aljezira_open : false,}" x-cloak>
 
             <button>
               <h4 class="text-black font-bold text-lg underline" x-on:click="open = !open">Tags</h4>
@@ -139,7 +141,7 @@
 
 
             <h4 class="text-black  mt-2 underline font-bold text-lg" x-on:click="open_article = !open_article">Latest
-              Topics</h4>
+              Article</h4>
             <div x-show="open_article">
               @foreach($Latest_articles as $Latest_articles)
               <p class="mt-1"> <a href="{{ route('article_object', $Latest_articles->id)  }}">{{ $Latest_articles->title
@@ -148,15 +150,31 @@
             </div>
 
             <div>
-              <select class="w-full p-1">
-                <option>BBC</option>
-                <option>Aljezira</option>
-                <option>CNBC</option>
-              </select>
-              <div>
-                
-                @foreach((array)$news as $new)
-                  {{ $new }}
+
+              <hr />
+              <h4 class="text-black mt-2 underline font-bold text-lg" x-on:click="cnn_open = ! cnn_open">CNN</h4>
+              <div x-show="cnn_open">
+                <h3 class="my-2 text-base font-semibold">CNN Top Stories</h3>
+                @foreach($cnn_news as $cnn_news)
+                <p class="mt-1"><a href="{{ $cnn_news->url }}"> {{ $cnn_news->title }} </a><sub>{{
+                    $cnn_news->publishedAt }}</sub></p>
+                @endforeach
+              </div>
+              <h4 class="text-black mt-2 underline font-bold text-lg" x-on:click="bbc_open = ! bbc_open">BBC</h4>
+              <div x-show="bbc_open">
+                <h3 class="my-2 text-base font-semibold">BBC Top Stories</h3>
+                @foreach($news as $new)
+                <p class="mt-1"><a href="{{ $new->url }}"> {{ $new->title }} </a><sub>{{ $new->publishedAt }}</sub>
+                </p>
+                @endforeach
+              </div>
+              <h4 class="text-black mt-2 underline font-bold text-lg" x-on:click="aljezira_open = ! aljezira_open">
+                Aljazeera</h4>
+              <div x-show="aljezira_open">
+                <h3 class="my-2 text-base font-semibold">Aljazeera Top Stories</h3>
+                @foreach($aljazeera_news as $aljazeera_news)
+                <p class="mt-1"><a href="{{ $aljazeera_news->url }}"> {{ $aljazeera_news->title }} </a><sub>{{
+                    $aljazeera_news->publishedAt }}</sub></p>
                 @endforeach
               </div>
             </div>

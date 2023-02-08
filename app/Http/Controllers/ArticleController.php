@@ -32,11 +32,11 @@ class ArticleController extends Controller
     {
         // $client = new Client();
         // $response = $client->request('GET', 'https://newsapi.org/v2/everything?q=bitcoin&apiKey=8ba8c66b432e45d691ba3d74b1850436');
-        $response = NewsAPI::topHeadlines()->get([
-            'country' => 'gb',
-            'category'=>'sports'
-        ]);
-        dd($response);
+        // $response = NewsAPI::topHeadlines()->get([
+        //     'country' => 'gb',
+        //     'category'=>'sports'
+        // ]);
+        // dd($response);
 
         $articles = Article::where('user_id', $id)->with(['tags', 'category', 'user'])->get();
         return view('articles.user_articles_list', compact('articles'));
