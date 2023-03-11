@@ -16,5 +16,5 @@ Live wire For crud function on other parts of the Application .<br/>
 Auth Starter Kit => Laravel Breeze (Tailwind) .<br/>
 Sends mail when someone comment on your article using gmail or mailtrap. <br/>
 forogot passord function working .<br/>
-get top headlines from BBC ,CNN and Aljazeera using newsapi.</br/>
+get top headlines from BBC ,CNN and Aljazeera using newsapi.<br/>
 
