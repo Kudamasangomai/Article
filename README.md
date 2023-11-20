@@ -14,7 +14,7 @@ Articles App is a Medium/Dev clone that allows users to publish articles.
 Authentication With Laravel Socialite(Google And Github) .<br/>
 Live wire For crud function on other parts of the Application .<br/>
 Auth Starter Kit => Laravel Breeze (Tailwind) .<br/>
-Sends mail when someone comment on your article using gmail or mailtrap. <br/>
-forogot passord function working .<br/>
-get top headlines from BBC ,CNN and Aljazeera using newsapi.<br/>
+Sends mail when someone comments on your article using Gmail. <br/>
+Forgot password function working .<br/>
+get top headlines from BBC , CNN and Aljazeera using newsapi.<br/>
 
